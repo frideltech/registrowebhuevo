@@ -65,6 +65,6 @@ elif opcionMenu == "Registro Mision":
             exito, registroHuevo = CrearMision(misionInput,lugarInput,liderInput,nombreHuevoInput)
             if exito:
                 st.session_state.registroHuevoEstado.append(registroHuevo)
-                st.success(f"Mision '{mision}' registrada exitosamente.")
+                st.success(f"Mision '{misionInput}' registrada exitosamente.")
             else:
                 st.error("Error al registrar la mision. Por favor complete todos los campos.")
