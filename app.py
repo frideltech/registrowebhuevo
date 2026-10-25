@@ -52,4 +52,19 @@ if opcionMenu == "Estado del Huevo":
         st.metric(label="PUNTOS DE EXPERIENCIA (XP) ACUMULADAS",value=f"{totalXP} XP", delta=f"{PUNTOS_XP_MISION} XP por Mision")
     with column3:
         st.metric(label="MISIONES REGISTRADAS",value=len(st.session_state.registroHuevoEstado))
-
+# MODULO 2 REGISTRO DE MISION
+elif opcionMenu == "Registro Mision":
+    st.header("Modulo 2: Registro de Mision del Huevo")
+    with st.form("formMision",clear_on_submit=True):
+        misionInput = st.text_input("Ingrese el nombre de la Mision:")
+        lugarInput = st.text_input("Ingrese el lugar de la Mision:")
+        liderInput = st.text_input("Ingrese el nombre del lider de la Mision:")
+        nombreHuevoInput = st.text_input("Ingrese el nombre del Huevo:")
+        botonRegistrarMision = st.form_submit_button("Registrar Mision")
+        if botonRegistrarMision:
+            exito, registroHuevo = CrearMision(misionInput,lugarInput,liderInput,nombreHuevoInput)
+            if exito:
+                st.session_state.registroHuevoEstado.append(registroHuevo)
+                st.success(f"Mision '{mision}' registrada exitosamente.")
+            else:
+                st.error("Error al registrar la mision. Por favor complete todos los campos.")
