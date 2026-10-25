@@ -68,3 +68,14 @@ elif opcionMenu == "Registro Mision":
                 st.success(f"Mision '{misionInput}' registrada exitosamente.")
             else:
                 st.error("Error al registrar la mision. Por favor complete todos los campos.")
+elif opcionMenu == "Ver Detalle Mision":
+    st.header("Modulo 3: Ver Detalle de Misiones del Huevo")
+    if len(st.session_state.registroHuevoEstado) > 0:
+        dfMisiones= pd.DataFrame(st.session_state.registroHuevoEstado)
+        st.dataframe(dfMisiones,user_container_width=True)
+        st.download_button(label="Descargar Detalle de Misiones",
+                           data=dfMisiones.to_csv(index=False).encode('utf-8'),
+                           file_name="detalle_misiones.csv",mime="text/csv")
+    else:
+        st.warning("No hay misiones registradas para mostrar.")
+    
